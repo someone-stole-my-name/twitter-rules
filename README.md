@@ -1,6 +1,27 @@
 Twitter Rules
 ============================
 
+## Example config
+
+```yaml
+client:
+  consumer_key: xxx
+  consumer_secret: xxx
+  access_token: xxx
+  access_secret: xxx
+
+rules:
+  - account: nasa
+    likes: '>50'
+    retweets: '>50'
+    options:
+      excludeReplies: no
+      includeRetweets: yes
+    actions:
+      retweet:
+      favorite:
+```
+
 ## Running on Heroku
 
 1. [![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
