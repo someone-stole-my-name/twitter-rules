@@ -1,0 +1,13 @@
+{
+    "name": "Twitter Rules",
+    "buildpacks": [
+        {
+            "url": "heroku/go"
+        }
+    ],
+    "website": "https://github.com/someone-stole-my-name/twitter-rules",
+    "repository": "https://github.com/someone-stole-my-name/twitter-rules",
+    "addons": [
+        "scheduler:standard"
+    ]
+}
