@@ -27,6 +27,7 @@ type Client struct {
 type Options struct {
 	ExcludeReplies  bool `yaml:"excludeReplies"`
 	IncludeRetweets bool `yaml:"includeRetweets"`
+	Limit           int  `yaml:"limit"`
 }
 
 type Actions map[string]interface{}
@@ -82,7 +83,11 @@ func main() {
 				return
 			}
 
+			tweetCount := 0
 			for _, tweet := range tweets {
+				if tweetCount >= rule.Options.Limit {
+					break
+				}
 				log.Printf("account=%s id=%s reetweets=%d favorites=%d", rule.Account, tweet.IDStr, tweet.RetweetCount, tweet.FavoriteCount)
 
 				retweetOperator := string(rule.Retweets[0])
@@ -108,6 +113,7 @@ func main() {
 								log.Println(err)
 							} else {
 								log.Printf("fav=%s", tweet.IDStr)
+								tweetCount++
 							}
 						}
 
@@ -117,6 +123,7 @@ func main() {
 								log.Println(err)
 							} else {
 								log.Printf("retweet=%s", tweet.IDStr)
+								tweetCount++
 							}
 						}
 					}
